@@ -10,6 +10,18 @@ variable "my_region" {
     type    = string
     default = "ap-northeast-2"
 }
+variable "db_username" {
+    type    = string
+}
+variable "db_password" {
+    type    = string
+}
+variable "my_access_key" {
+    type    = string
+}
+variable "my_secret_key" {
+    type    = string
+}
 
 variable "image_id_web" {
     type    = string
