@@ -316,7 +316,8 @@ resource "aws_elb" "SRE_external" {
 }
 resource "aws_elb" "SRE_internal" {
     name            = "SRE-internal"
-    subnets         = [aws_subnet.SRE_private3.id, aws_subnet.SRE_private4.id]
+    internal        = true
+    subnets         = [aws_subnet.SRE_private1.id, aws_subnet.SRE_private2.id]
     security_groups = [aws_security_group.SRE_sg1.id]
     instances       = [aws_instance.SRE_was1.id, aws_instance.SRE_was2.id]
     listener {
