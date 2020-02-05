@@ -258,7 +258,7 @@ resource "aws_alb_target_group" "SRE_web" {
   protocol = "HTTP"
   vpc_id   = aws_vpc.SRE_vpc.id
  health_check {
-    healthy_threshold   = 5
+    healthy_threshold   = 10
     unhealthy_threshold = 2
     timeout             = 5
     path                = var.target_group_path
@@ -316,7 +316,8 @@ resource "aws_elb" "SRE_external" {
 }
 resource "aws_elb" "SRE_internal" {
     name            = "SRE-internal"
-    subnets         = [aws_subnet.SRE_private3.id, aws_subnet.SRE_private4.id]
+    internal        = true
+    subnets         = [aws_subnet.SRE_private1.id, aws_subnet.SRE_private2.id]
     security_groups = [aws_security_group.SRE_sg1.id]
     instances       = [aws_instance.SRE_was1.id, aws_instance.SRE_was2.id]
     listener {
